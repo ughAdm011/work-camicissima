@@ -1,0 +1,29 @@
+<?php
+
+        // ✅ AGREGADO: armar video con SKU e inyectarlo al JSON
+    $sku = $block->getProduct()->getSku();
+    $videoUrl = "https://www.vid.com/" . $sku . "?url=1";
+
+    $videoItem = [
+        'isVideo' => true,
+        'type' => 'video',
+        'videoUrl' => $videoUrl,
+        'thumb' => $videoUrl, // cambiar si tenés thumbnail distinta
+        'img' => $videoUrl
+    ];
+
+    // Tomar JSON original
+    $galleryJson = $block->getGalleryImagesJson();
+    $galleryArray = json_decode($galleryJson, true);
+
+    // Agregar video
+    $galleryArray[] = $videoItem;
+
+    // Volver a JSON
+    $newGalleryJson = json_encode($galleryArray);
+
+?>
+......
+.......
+<!-- to change >
+                "data": <?= /* @noEscape */ $newGalleryJson ?>,
