@@ -1,3 +1,7 @@
+
+/*
+* first version
+*/
 <?php
 
         // ✅ AGREGADO: armar video con SKU e inyectarlo al JSON
@@ -27,3 +31,40 @@
 .......
 <!-- to change >
                 "data": <?= /* @noEscape */ $newGalleryJson ?>,
+
+
+
+
+
+
+
+
+/*
+*  second version 
+*/
+
+
+
+<?php
+    // ✅ AGREGADO: armar video con URL fija de Vimeo
+    $videoUrl = "https://player.vimeo.com/video/76979871";
+    $thumbUrl = "https://i.vimeocdn.com/video/452001751_640.jpg"; // thumbnail del video
+
+    $videoItem = [
+        'isVideo' => true,
+        'type' => 'video',
+        'videoUrl' => $videoUrl,
+        'thumb' => $thumbUrl,
+        'html' => '<iframe src="' . $videoUrl . '" width="640" height="360" frameborder="0" allowfullscreen></iframe>'
+    ];
+
+    // Tomar JSON original
+    $galleryJson = $block->getGalleryImagesJson();
+    $galleryArray = json_decode($galleryJson, true);
+
+/*
+*  api to get info vimeo 
+*/
+
+
+https://vimeo.com/api/v2/video/1132940125.json
